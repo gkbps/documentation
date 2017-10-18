@@ -1,0 +1,64 @@
+Các kiểu lập trình
+1. Imperative
+2. Object Oriented Programing
+3. Functional Programing
+
+Lập trình Javascript tránh kiểu 1. Imperative (phù hợp với Sync) do JS phần lớn sử dụng Async
+
+Sử dụng OOP hoặc FP tùy tình huống
+1. OOP dùng để gói properties và events/ behaviours vào trong 1 class
+2. FP dùng pure function để đảm bảo Immutability, tức là độc lập với properties hoặc các variables
+FP không thay đổi properties hoặc global variables mà tạo ra bản sao bao gồm những thay đổi
+Ví dụ: Khi xử lý mảng thay vì dùng forEach, doWhile theo cách Imperative để thay đổi giá trị các variables
+thì FP sử dụng map, reduce... để tạo ra 1 bản sao mới của variables đã bao gồm các thay đổi
+
+
+Khi phát triển Nodejs API thì nên áp dụng
+1. Class cho các đối tượng
+-----------------------------------------
+Khởi tạo
+class XXX {
+  constructor() { }
+  static get xxx() { } -> Có thể truy cập vào function của class mà không cần khởi tạo new XXX();
+  yyy() { }
+}
+Object.seal(XXX);
+export = XXX;
+
+Sử dụng
+import XXX = require('path_to_XXX_class');
+var xxx = new XXX();
+
+-----------------------------------------
+Khởi tạo
+export class XXX {
+  constructor() { }
+  static get xxx() { } -> Có thể truy cập vào function của class mà không cần khởi tạo new XXX();
+  yyy() { }
+}
+
+Sử dụng
+import { XXX } from 'path_to_XXX_class';
+var xxx = new XXX();
+----------------------------------------------------------------------------------
+
+2. Object cho các Controller, pure function
+Khởi tạo
+var XXX = {
+  field1: value,
+  field2: value,
+  function1: (params) => {
+
+  },
+  function2: (params) => {
+
+  },
+ }
+
+ module.exports = XXX;
+
+ Sử dụng
+ var xxx = require('path_to_XXX_class');
+
+Lưu ý cách 2 cho phép loại bỏ Imperative programming bằng cách hoàn toàn dựa vào các hàm kèm theo array, object
+array.function hoặc object.function

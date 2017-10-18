@@ -1,0 +1,23 @@
+Sử dụng phương pháp sau để biến sync thành async khi return API methods
+
+function somePromiseAPI() {
+  return Promise.resolve()
+    .then(() => {
+      doSomethingThatMayThrow();
+      return 'foo';   <-- return something here
+    })
+    .then(/*...*/)
+    .catch((err)=> {/*...*/})
+}
+
+Có thể kết hợp với Promise.reject(new Error('some error'));
+
+Ở trong 1 function then, có thể return 3 loại:
+1. Return 1 promise
+2. Return 1 synchronous value (hoặc undefined) và cho phép chaining then tiếp
+3. throw 1 synchronous error
+
+Lưu ý về Promise factories để sau này run các scripts generate approvers list
+
+READING:
+https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
